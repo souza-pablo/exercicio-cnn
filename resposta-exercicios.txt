@@ -3,17 +3,17 @@ Paulo Ryan Garani Salgado – 202210959
 
 Exercício de Código e Questões - Redes Neurais Convolucionais
 
-1.	Quantas camadas convolucionais existem no modelo? Quais são seus tamanhos de kernel?
+1.Quantas camadas convolucionais existem no modelo? Quais são seus tamanhos de kernel?
 R: O modelo utiliza duas camadas convolucionais e ambas utilizam kernel de tamanho 3x3.
 
-2.	Por que usamos padding nas camadas convolucionais neste código?
+2.Por que usamos padding nas camadas convolucionais neste código?
 R: O padding é utilizado para preservar as dimensões espaciais da imagem durante a convolução. Sem padding, uma imagem 28x28 sofreria redução após cada convolução. Com padding, mantemos a largura e altura igual (por exemplo, 28x28 → 28x28), o que facilita o cálculo da saída, evita que as imagens encolham rapidamente antes das camadas fully connected e ajuda a preservar melhor as bordas da imagem, que também contêm informações úteis.
 
-3.	Qual a função da camada MaxPool2d? Como ela afeta as dimensões da imagem?
+3.Qual a função da camada MaxPool2d? Como ela afeta as dimensões da imagem?
 R: A função do MaxPool2d é realizar subamostragem, reduzindo a dimensionalidade da imagem e mantendo as características mais relevantes. No código usa-se um pooling 2x2 que reduz a largura e altura da imagem pela metade. Exemplo: uma imagem 28x28 passa para 14x14, e depois 7x7. As vantagens são: reduz o número de parâmetros e o custo computacional; ajuda a evitar o overfitting; torna a rede mais robusta a pequenas variações na imagem.
 
-4.	Por que precisamos "achatar" (flatten) os dados antes da camada fully connected?
+4.Por que precisamos "achatar" (flatten) os dados antes da camada fully connected?
 R: As camadas fully connected (fc) esperam vetores 1D como entrada, mas a saída da convolução e pooling ainda é um tensor 3D (canal, altura, largura). Ao achatar a saída da última camada convolucional [batch_size, 64, 7, 7], o resultado é um vetor 1D [batch_size, 3136]. Isso permite que os dados entrem corretamente na camada fully connected.
 
-5.	Qual a finalidade das camadas de Dropout?
+5.Qual a finalidade das camadas de Dropout?
 R: As camadas de Dropout são usadas para reduzir overfitting durante o treinamento. Dropout 0.25 e 0.5 significam que 25% e 50% dos neurônios serão desligados aleatoriamente durante o treino. Dessa forma, a rede é forçada a aprender por representações mais robustas, evitando a dependência excessiva de certos neurônios e aumentando a capacidade de generalização da rede.
